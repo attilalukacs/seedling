@@ -1,6 +1,6 @@
 package hu.procyon.seedling.model;
 
-public class Stats {
+public class BasicStats {
 
     private int all;
     private int unread;

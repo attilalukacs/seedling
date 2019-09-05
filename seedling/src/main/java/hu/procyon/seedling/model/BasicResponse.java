@@ -1,9 +1,9 @@
 package hu.procyon.seedling.model;
 
-public class Response {
+public class BasicResponse {
     private boolean success;
 
-    public Response(boolean success) {
+    public BasicResponse(boolean success) {
         this.success = success;
     }
 
