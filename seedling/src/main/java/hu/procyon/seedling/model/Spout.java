@@ -2,9 +2,6 @@ package hu.procyon.seedling.model;
 
 import java.util.Map;
 
-/**
- * Spout
- */
 public class Spout {
 
     private String id;
