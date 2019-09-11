@@ -2,6 +2,9 @@ package hu.procyon.seedling.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SpoutParam {
     private String name;
     private String title;
@@ -44,8 +47,14 @@ public class SpoutParam {
         this.title = title;
     }
 
+    @JsonIgnore
     public Type getType() {
         return type;
+    }
+
+    @JsonProperty("type")
+    public String getTypeStr() {
+        return type.toString();
     }
 
     public void setType(Type type) {
@@ -68,8 +77,14 @@ public class SpoutParam {
         this.required = required;
     }
 
+    @JsonIgnore
     public List<Validation> getValidation() {
         return validation;
+    }
+
+    @JsonProperty("validation")
+    public String getValidationStr() {
+        return String.join(",", validation.stream().map(Validation::toString).toArray(String[]::new));
     }
 
     public void setValidation(List<Validation> validation) {

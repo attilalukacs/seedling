@@ -1,7 +1,9 @@
 package hu.procyon.seedling.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,17 @@ public class SourceController {
 
     @GetMapping("/sources/list")
     public List<Source> getSources() {
-        return Arrays.asList(new Source());
+        Source source = new Source();
+        source.setId(1);
+        source.setTitle("Source Title");
+        source.setTags(Arrays.asList("a", "bb"));
+        source.setSpout("spout");
+        Map<String, Object> params = new HashMap<>();
+        params.put("key", "https://something");
+        source.setParams(params);
+        source.setError("error");
+        source.setIcon("icon");
+        return Arrays.asList(source);
     }
 
     @PostMapping("/source")

@@ -1,5 +1,6 @@
 package hu.procyon.seedling.controller;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,40 +21,57 @@ public class ItemController {
 
     private static Logger LOG = LoggerFactory.getLogger(ItemController.class);
 
-    @GetMapping(path = "/items")
+    @GetMapping("/items")
     public List<Item> getItems() {
         //TODO: introduce parameters according to specs
+
+        Item item = new Item();
+        item.setId(1);
+        item.setDatetime(LocalDateTime.now());
+        item.setTitle("title");
+        item.setContent("content");
+        item.setSource("1");
+        item.setUnread(false);
+        item.setStarred(true);
+        //item.setThumbnail("whatever.png");
+        item.setThumbnail("");
+        //item.setIcon("icon.gif");
+        item.setIcon("");
+        item.setUid("uid");
+        item.setLink("http://link");
+        item.setSourcetitle("sourceTitle");
+        item.setTags(Arrays.asList("ilyen", "olyan"));
         return Arrays.asList(
-            new Item()
+            item
         );
     }
 
-    @PostMapping(path = "/mark/{itemId}")
+    @PostMapping("/mark/{itemId}")
     public BasicResponse markItem(@PathVariable int itemId) {
         return new BasicResponse(true);
     }
 
-    @PostMapping(path = "/unmark/{itemId}")
+    @PostMapping("/unmark/{itemId}")
     public BasicResponse unmarkItem(@PathVariable int itemId) {
         return new BasicResponse(true);
     }
 
-    @PostMapping(path = "/mark/")
+    @PostMapping("/mark/")
     public BasicResponse markItems(@RequestParam("ids[]") List<String> ids) {
         return new BasicResponse(true);
     }
 
-    @PostMapping(path = "/starr/{itemId}")
+    @PostMapping("/starr/{itemId}")
     public BasicResponse starItem(@PathVariable int itemId) {
         return new BasicResponse(true);
     }
 
-    @PostMapping(path = "/unstarr/{itemId}")
+    @PostMapping("/unstarr/{itemId}")
     public BasicResponse unstarItem(@PathVariable int itemId) {
         return new BasicResponse(true);
     }
 
-    @GetMapping(path = "/stats")
+    @GetMapping("/stats")
     public BasicStats getStats() {
         return new BasicStats();
     }

@@ -3,6 +3,9 @@ package hu.procyon.seedling.model;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Source {
     private int id;
     private String title;
@@ -28,8 +31,14 @@ public class Source {
         this.title = title;
     }
 
+    @JsonIgnore
     public List<String> getTags() {
         return tags;
+    }
+
+    @JsonProperty("tags")
+    public String getTagsStr() {
+        return String.join(",", tags);
     }
 
     public void setTags(List<String> tags) {

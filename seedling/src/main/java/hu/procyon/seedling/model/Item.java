@@ -3,6 +3,10 @@ package hu.procyon.seedling.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Item {
     private int id;
     private LocalDateTime datetime;
@@ -26,6 +30,7 @@ public class Item {
         this.id = id;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getDatetime() {
         return datetime;
     }
@@ -50,16 +55,28 @@ public class Item {
         this.content = content;
     }
 
+    @JsonIgnore
     public boolean isUnread() {
         return unread;
+    }
+
+    @JsonProperty("unread")
+    public String getUnreadStr() {
+        return unread ? "1" : "0";
     }
 
     public void setUnread(boolean unread) {
         this.unread = unread;
     }
 
+    @JsonIgnore
     public boolean isStarred() {
         return starred;
+    }
+
+    @JsonProperty("starred")
+    public String getStarredStr() {
+        return starred ? "1" : "0";
     }
 
     public void setStarred(boolean starred) {
@@ -114,8 +131,14 @@ public class Item {
         this.sourcetitle = sourcetitle;
     }
 
+    @JsonIgnore
     public List<String> getTags() {
         return tags;
+    }
+
+    @JsonProperty("tags")
+    public String getTagsStr() {
+        return String.join(",", tags);
     }
 
     public void setTags(List<String> tags) {
