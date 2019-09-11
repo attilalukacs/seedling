@@ -16,8 +16,12 @@ public class TagController {
 
     @GetMapping("/tags")
     List<Tag> getTags() {
+        Tag tag = new Tag();
+        tag.setName("ez");
+        tag.setColor("#800000");
+        tag.setUnread(1);
         return Arrays.asList(
-            new Tag()
+            tag
         );
     }
 
